@@ -3,7 +3,12 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include <csignal>
 
+void sigHandler(int sig){
+    std::cout << "Неверный ввод! Попробуйте ещё раз" << std::endl;
+    std::signal(SIGINT, sigHandler);
+}
 int inp(int a, int b) {
     int n;
     while (true){
@@ -82,6 +87,7 @@ std::vector <int> unite(std::vector <int> part1, std::vector <int> part2){
 }
 int main() {
     setlocale(0, "");
+    signal(SIGINT, sigHandler);
     srand( time(0) );
     std::cout << "Введите число из диапазона [2, 5]" << std::endl;
     int M = inp(2, 5);
