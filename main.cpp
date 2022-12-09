@@ -13,6 +13,9 @@ int inp(int a, int b) {
     int n;
     while (true){
         if (!(std::cin >> n) or n < a or n > b) {
+            if (std::cin.eof()){
+                return a;
+            }
             std::cout << "Неверный ввод! Попробуйте ещё раз" << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
